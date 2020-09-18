@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Runtime.ExceptionServices;
+using System.Text;
 
 namespace OOP_Lab_02
 {
@@ -132,14 +134,94 @@ namespace OOP_Lab_02
             empty += "hello";
             Console.WriteLine($"\n{empty}");
 
-            Console.WriteLine($"\nIs it null? {string.IsNullOrEmpty(notempty)}");
+            Console.WriteLine($"\nIs it null? {string.IsNullOrEmpty(notempty)}\n");
+
+            // d)
+
+            StringBuilder sb = new StringBuilder("DEEF", 50);
+            sb.Append(new char[] { 'A', 'B', 'C' });
+            sb.Remove(1, 1);
+            Console.WriteLine(sb);
+        }
+        static void Task3()
+        {
+            // a)
+            int[,] matrix1 = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 0; j < 3; j++)
+                {
+                    Console.Write(matrix1[i, j] + " ");
+                }
+                Console.Write('\n');
+            }
+            Console.Write('\n');
+
+            // b)
+            string string1 = "Hello", string2 = "Good Evening", string3 = "Good Morning";
+            string[] strings = { string1, string2, string3 };
+            Console.Write("Массив: ");
+            foreach (string str in strings)
+            {
+                Console.Write("[" + str + "] ");
+            }
+            Console.Write('\n');
+            Console.Write($"Размер массива: {strings.Length}");
+
+            Console.Write("\nНа что вы хотите поменять ее значение? ");
+            string replace;
+            replace = Console.ReadLine();
+
+            Console.Write("\nВведите индекс ячейки ");
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            strings[index] = replace;
+            Console.Write("\nОбновленный массив: ");
+            foreach (string str in strings)
+            {
+                Console.Write("[" + str + "] ");
+            }
+
+            // c)
+
+            int[][] step = new int[3][];
+            step[0] = new int[2];
+            step[1] = new int[3];
+            step[2] = new int[4];
+            Console.Write("\nВведите зубчатый массив: \n");
+            for (var i = 0; i < step.Length; i++)
+            {
+                for (int j = 0; j < step[i].Length; j++)
+                {
+                    Console.WriteLine($"Введите {j}-й элемент {i}-ой строки ");
+                    step[i][j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("\nМассив:");
+            foreach (int[] x in step)
+            {
+                foreach(int b in x)
+                {
+                    Console.Write($"{b} ");
+                }
+                Console.WriteLine('\n');
+            }
+
+            // d)
+            var array_var = new []{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var string_var = "Неявно типизированная строка";
+            foreach(var a in array_var)
+            {
+                Console.Write($"{a} ");
+            }
+            Console.WriteLine(string_var);
         }
         static void Main(string[] args)
         {
             //Task1();
-            Task2();
-
-
+            //Task2();
+            Task3();
+            
 
 
 
