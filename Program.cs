@@ -260,10 +260,24 @@ namespace OOP_Lab_02
                 char simbol = str[0];
                 return (arr[arr.Length - 1], arr[0], sum, simbol);
             }
-            //Task1();
-            //Task2();
-            //Task3();
-            //Task4();
+
+            static void Task6First() {
+                checked
+                {
+                    int number = Int32.MaxValue;
+                    Console.WriteLine(number);
+                }
+            }
+            
+            static void Task6Second()
+            {
+                unchecked
+                {
+                    int number = Int32.MaxValue + 1;
+                    Console.WriteLine(number);
+                }
+            }
+
             int answer;
             do
             {
@@ -274,6 +288,7 @@ namespace OOP_Lab_02
                 Console.WriteLine("3) Arrays");
                 Console.WriteLine("4) Tuples");
                 Console.WriteLine("5) Local function in main");
+                Console.WriteLine("6) Checked and unchecked");
                 Console.WriteLine("9) Clear Console");
                 Console.WriteLine("0) Exit");
                 
@@ -297,6 +312,12 @@ namespace OOP_Lab_02
                         string textstr = "some text";
                         var (one, two, three, four) = Task5(arr, textstr);
                         Console.WriteLine($"\n Max: {one}, Min: {two}, Sum: {three}, Simbol: '{four}'\n");
+                        break;
+                    case 6:
+                        Console.WriteLine("Checked:");
+                        Task6First();
+                        Console.WriteLine("Unchecked:");
+                        Task6Second();
                         break;
                     case 9:
                         Console.Clear();
