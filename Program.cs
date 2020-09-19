@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Runtime.ExceptionServices;
 using System.Text;
+using System.Threading;
 
 namespace OOP_Lab_02
 {
@@ -216,16 +217,99 @@ namespace OOP_Lab_02
             }
             Console.WriteLine(string_var);
         }
+
+        static void Task4()
+        {
+            // a)
+
+            (int, string, char, string, ulong) human = (15, "Dexter", 'D', "Industries", 12401250132);
+
+            // b)
+
+            Console.WriteLine($"Name: {human.Item2}\nFactory: {human.Item4}\nId: {human.Item5}\n");
+
+            // c)
+
+            (int, string, char) CreateCortage(string name)
+            {
+                int length = name.Length;
+                string str = $"My name is {name}";
+                char ch = (char)(name[0]);
+                return (length, str, ch);
+            }
+            string name = "Viktor";
+            var (one, two, three) = CreateCortage(name);
+            (int first, string second, char third) newTuple = CreateCortage(name);
+            Console.WriteLine($"{one} {two} {three}\n");
+            Console.WriteLine($"{newTuple.first} {newTuple.second} {newTuple.third}\n");
+
+            // d)
+
+            Console.WriteLine($"Does '(one, two, three)' equal to 'newTuple'? {(one, two, three) == newTuple}\n");
+        }
         static void Main(string[] args)
         {
+            static (int, int, int, char) Task5(int[] arr, string str)
+            {
+                Array.Sort(arr);
+                int sum = 0;
+                foreach(int element in arr)
+                {
+                    sum += element;
+                }
+                char simbol = str[0];
+                return (arr[arr.Length - 1], arr[0], sum, simbol);
+            }
             //Task1();
             //Task2();
-            Task3();
-            
-
-
-
-            Console.Write('\n');
+            //Task3();
+            //Task4();
+            int answer;
+            do
+            {
+                Console.WriteLine("\n-----------------------\n");
+                Console.WriteLine("Choose task option\n");
+                Console.WriteLine("1) Types");
+                Console.WriteLine("2) Strings");
+                Console.WriteLine("3) Arrays");
+                Console.WriteLine("4) Tuples");
+                Console.WriteLine("5) Local function in main");
+                Console.WriteLine("9) Clear Console");
+                Console.WriteLine("0) Exit");
+                
+                answer = Convert.ToInt32(Console.ReadLine());
+                switch (answer)
+                {
+                    case 1:
+                        Task1();
+                        break;
+                    case 2:
+                        Task2();
+                        break;
+                    case 3:
+                        Task3();
+                        break;
+                    case 4:
+                        Task4();
+                        break;
+                    case 5:
+                        int[] arr = { 5, 4, 1, 3, 2 };
+                        string textstr = "some text";
+                        var (one, two, three, four) = Task5(arr, textstr);
+                        Console.WriteLine($"\n Max: {one}, Min: {two}, Sum: {three}, Simbol: '{four}'\n");
+                        break;
+                    case 9:
+                        Console.Clear();
+                        break;
+                    case 0:
+                        answer = 0;
+                        break;
+                    default:
+                        Console.WriteLine("Something went wrong, try again");
+                        continue;
+                }
+                
+            } while (answer != 0);
         }
     }
 }
